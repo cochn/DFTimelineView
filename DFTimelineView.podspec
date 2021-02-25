@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.platform     = :ios, "7.0"
 
 
-  s.source       = { :git => "https://github.com/anyunzhong/DFTimelineView.git", :tag => s.version.to_s }
+  s.source       = { :git => "git@github.com:cochn/DFTimelineView.git", :tag => s.version.to_s }
 
 
   s.source_files = "DFTimelineView/DFTimelineView/**/*.{h,m}"
