@@ -6,12 +6,11 @@
 //  Copyright (c) 2015年 Datafans, Inc. All rights reserved.
 //
 
-#import "UIImageView+WebCache.h"
+
+#import <MLLabel/MLLabel.h>
+#import <SDWebImage/SDWebImage.h>
+#import "DFCommon.h"
 #import "MLLabel+Size.h"
-
-#import "DFBaseViewController.h"
-
-
 @interface DFBaseTimeLineViewController : DFBaseViewController<UITableViewDataSource, UITableViewDelegate, UIViewControllerPreviewingDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;

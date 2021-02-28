@@ -57,7 +57,7 @@ static  DFFaceManager *_manager=nil;
 -(MLExpression *)sharedMLExpression
 {
     if (_expression == nil) {
-        _expression = [MLExpression expressionWithRegex:@"\\[[a-zA-Z0-9\\u4e00-\\u9fa5]+\\]" plistName:@"Expression" bundleName:@"ClippedExpression"];
+        _expression = [MLExpression expressionWithRegex:@"\\[[a-zA-Z0-9\\u4e00-\\u9fa5]+\\]" plistName:@"Expression" bundleName:@"ClippedExpression" bundle:@""];
     }
     
     return _expression;

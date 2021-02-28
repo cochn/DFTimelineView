@@ -91,6 +91,10 @@
     if ([_tableView respondsToSelector:@selector(setLayoutMargins:)]) {
         _tableView.layoutMargins = UIEdgeInsetsZero;
     }
+    if (@available(iOS 11.0, *)) {
+        _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    } else {
+    }
     [self.view addSubview:_tableView];
 }
 
@@ -346,7 +350,6 @@
     _userNickView.frame = CGRectMake(x, y, width, height);
     _userNickView.text = nick;
 }
-
 
 -(void)setUserSign:(NSString *)sign
 {
