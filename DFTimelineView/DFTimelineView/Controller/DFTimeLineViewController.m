@@ -71,20 +71,12 @@
 }
 
 
-
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self initCommentInputView];
     
 }
-
-
-
-
-
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -106,16 +98,6 @@
     [_commentInputView removeObserver];
 }
 
-
-
-
-
-
-
-
-
-
-
 -(void) initCommentInputView
 {
     if (_commentInputView == nil) {
@@ -130,6 +112,12 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     
+}
+
+- (void)clearAllData{
+    [self.items removeAllObjects];
+    [self.itemDic removeAllObjects];
+    [self.commentDic removeAllObjects];
 }
 
 
