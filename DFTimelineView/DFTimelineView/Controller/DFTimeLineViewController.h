@@ -15,6 +15,8 @@
 
 @interface DFTimeLineViewController : DFBaseTimeLineViewController
 
+@property (nonatomic, strong) NSMutableArray *items;
+
 //添加到末尾
 -(void) addItem:(DFBaseLineItem *) item;
 
@@ -26,6 +28,9 @@
 
 //赞
 -(void) addLikeItem:(DFLineLikeItem *) likeItem itemId:(long long) itemId;
+
+//取消赞
+-(void) removeLikeItem:(DFLineLikeItem *) likeItem itemId:(long long) itemId;
 
 //评论
 -(void) addCommentItem:(DFLineCommentItem *) commentItem itemId:(long long) itemId replyCommentId:(long long) replyCommentId;

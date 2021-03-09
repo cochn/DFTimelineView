@@ -27,7 +27,7 @@
 
 @interface DFTimeLineViewController ()<DFLineCellDelegate, CommentInputViewDelegate, TZImagePickerControllerDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate, DFImagesSendViewControllerDelegate,DFVideoCaptureControllerDelegate, DFImagePreviewViewControllerDelegate>
 
-@property (nonatomic, strong) NSMutableArray *items;
+
 
 @property (nonatomic, strong) NSMutableDictionary *itemDic;
 
@@ -253,6 +253,13 @@
     }
 }
 
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    for (int row = 0; row < self.items.count; row++) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+        DFBaseLineCell *cell  = (DFBaseLineCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+        [cell hideLikeCommentToolbar];
+    }
+}
 
 #pragma mark - Method
 
@@ -303,6 +310,24 @@
 {
     DFBaseLineItem *item = [self getItem:itemId];
     [item.likes insertObject:likeItem atIndex:0];
+    
+    item.likesStr = nil;
+    item.cellHeight = 0;
+    
+    [self genLikeAttrString:item];
+    
+    [self.tableView reloadData];
+}
+
+-(void) removeLikeItem:(DFLineLikeItem *) likeItem itemId:(long long) itemId{
+    DFBaseLineItem *item = [self getItem:itemId];
+    for (int i = 0; i < item.likes.count; i++) {
+        DFLineLikeItem *likeItemOld = item.likes[i];
+        if (likeItemOld.userId == likeItem.userId) {
+            [item.likes removeObjectAtIndex:i];
+            break;
+        }
+    }
     
     item.likesStr = nil;
     item.cellHeight = 0;

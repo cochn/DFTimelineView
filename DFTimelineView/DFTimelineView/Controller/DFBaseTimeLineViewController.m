@@ -73,9 +73,9 @@
     }
     #endif
     
-    [self initHeader];
-    
-    [self initFooter];
+//    [self initHeader];
+//    
+//    [self initFooter];
     
 }
 
@@ -193,8 +193,6 @@
     [indicator startAnimating];
     
     [_footer addSubview:indicator];
-    
-    
 }
 
 
@@ -233,25 +231,30 @@
 #pragma mark - PullMoreFooterDelegate
 
 
--(void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    //NSLog(@"size: %f  offset:  %f", scrollView.contentSize.height, scrollView.contentOffset.y+self.tableView.frame.size.height);
-    
-    if (_isLoadingMore) {
-        return;
-    }
-    
-    if (scrollView.contentOffset.y+self.tableView.frame.size.height - 30 > scrollView.contentSize.height) {
-        
-        [self showFooter];
-    }
-}
+//-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+//{
+//    //NSLog(@"size: %f  offset:  %f", scrollView.contentSize.height, scrollView.contentOffset.y+self.tableView.frame.size.height);
+//
+//    if (_isLoadingMore) {
+//        return;
+//    }
+//
+//    if (self.noMoreData) {
+//        return;
+//    }
+//
+//    if (scrollView.contentOffset.y+self.tableView.frame.size.height - 30 > scrollView.contentSize.height) {
+//
+//        [self showFooter];
+//    }
+//}
 
 
 -(void) showFooter
 {
     NSLog(@"show footer");
     
+    _footer.hidden = NO;
     CGRect frame = _tableView.tableFooterView.frame;
     CGFloat x,y,width,height;
     width = frame.size.width;
@@ -264,9 +267,7 @@
     _isLoadingMore = YES;
     [self loadMore];
     
-    
-    
-    
+
 }
 
 
@@ -284,7 +285,7 @@
         y = frame.origin.y;
         _footer.frame = CGRectMake(x, y, width, height);
         _tableView.tableFooterView = _footer;
-        
+        _footer.hidden = YES;
         _isLoadingMore = NO;
         
     }];
@@ -294,6 +295,7 @@
 
 -(void) onPullDown:(id) sender
 {
+    [_refreshControl beginRefreshing];
     [self refresh];
 }
 

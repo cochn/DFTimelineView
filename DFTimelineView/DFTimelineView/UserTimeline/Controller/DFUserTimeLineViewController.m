@@ -19,8 +19,6 @@
 
 @interface DFUserTimeLineViewController()<DFBaseUserLineCellDelegate>
 
-@property (nonatomic, strong) NSMutableArray *items;
-
 @property (nonatomic, assign) NSUInteger currentDay;
 
 @property (nonatomic, assign) NSUInteger currentMonth;
@@ -50,7 +48,9 @@
     
 }
 
-
+- (void)clearAllData{
+    [self.items removeAllObjects];
+}
 
 
 
